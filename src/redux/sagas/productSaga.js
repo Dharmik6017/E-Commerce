@@ -3,13 +3,6 @@ import axios from "axios";
 import { getProductSuccess } from "../actions";
 const url = "https://fakestoreapi.com/products";
 
-function getApi() {
-  return axios
-    .get(url)
-    .then((res) => res.json)
-    .catch((err) => err);
-}
-
 function* getchProduct(action) {
   try {
     const products = yield call(() => axios.get(url));

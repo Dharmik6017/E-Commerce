@@ -3,7 +3,9 @@ import * as type from "../types";
 const initialState = {
   products: [],
   loading: false,
+  makeOrder: null,
   error: null,
+  makeOrderLoading: false,
 };
 
 export default function products(state = initialState, action) {
@@ -25,6 +27,20 @@ export default function products(state = initialState, action) {
         ...state,
         loading: false,
         error: action.message,
+      };
+
+    case type.MAKE_ORDER_SUCCESS:
+      return {
+        ...state,
+        makeOrderLoading: false,
+        makeOrder: action.payload,
+      };
+
+    case type.MAKE_ORDER_REQUESTED:
+      return {
+        ...state,
+        makeOrderLoading: true,
+        makeOrder: action.payload,
       };
     default:
       return state;

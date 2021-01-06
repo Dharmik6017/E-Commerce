@@ -6,10 +6,6 @@ const Product = (props) => {
   const { data, setCart, cart } = props;
 
   useEffect(() => {
-    // console.log(cart, "In use Effect");
-    // cart && cart.length === 0 && setinCart(false);
-    // let setcart = cart.map((u) => u.id === data.id);
-    // setinCart(...setcart);
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].id === data.id) {
         setinCart(true);
@@ -18,29 +14,17 @@ const Product = (props) => {
     }
   }, [cart]);
 
-  // console.log("inCart", inCart, data);
   return (
     <>
-      <div className="ui cards" style={{ marginTop: "0px" }}>
+      <div className="ui cards" style={styles.container}>
         <div className="card">
-          <div
-            className="image"
-            style={{
-              maxHeight: "200px",
-              maxWidth: "200px",
-              height: "100%",
-              width: "100%",
-              margin: "0 auto",
-            }}
-          >
-            <img
-              src={data.image}
-              alt={data.title}
-              style={{ height: "100%", width: "100%" }}
-            />
+          <div className="image" style={styles.imageContainer}>
+            <img src={data.image} alt={data.title} style={styles.image} />
           </div>
           <div className="content">
-            <div className="header">{data.title}</div>
+            <div className="header" style={styles.title}>
+              {data.title}
+            </div>
             <div className="meta">
               <a>{data.category}</a>
             </div>
@@ -65,7 +49,6 @@ const Product = (props) => {
                 className="ui primary button"
                 onClick={() => {
                   setCart([...cart, data]);
-                  console.log("data.id clicked", data.id);
                 }}
               >
                 Add to Cart
@@ -79,3 +62,16 @@ const Product = (props) => {
 };
 
 export default Product;
+
+const styles = {
+  imageContainer: {
+    maxHeight: "200px",
+    maxWidth: "200px",
+    height: "100%",
+    width: "100%",
+    margin: "0 auto",
+  },
+  image: { height: "100%", width: "100%" },
+  title: { lineHeight: "1.5em", overflow: "hidden", height: "3em" },
+  container: { marginTop: "0px", margin: "10px" },
+};

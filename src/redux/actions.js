@@ -20,3 +20,17 @@ export function getProductFailure(data) {
     payload: data,
   };
 }
+
+export function makeOrderRequested(data) {
+  return {
+    type: type.MAKE_ORDER_REQUESTED,
+    payload: data,
+  };
+}
+
+export function makeOrder(data) {
+  return {
+    type: type.MAKE_ORDER_SUCCESS,
+    payload: data,
+  };
+}
